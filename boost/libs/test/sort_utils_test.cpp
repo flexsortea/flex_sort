@@ -26,7 +26,7 @@ template <typename Collection>
 static void generate_sorted(Collection & c)
 {
 	typename Collection::value_type i = 0;
-	generate(c.begin(), c.end(), ++lambda::var(i));
+	generate(c.begin(), c.end(), lambda::var(i)++);
 }
 
 
@@ -40,7 +40,7 @@ struct basic_tests
 	{
 		typedef typename Collection::value_type value_type;
 
-	//	BOOST_STATIC_ASSERT((numeric_limits<value_type>::max() > (_max_iterations + 1)));
+		// BOOST_STATIC_ASSERT((numeric_limits<value_type>::max() >= (static_cast<value_type>(_max_iterations + 1))));
 
 		// an empty collection must be seen as ordered
 		BOOST_CHECK(is_ordered(c.begin(), c.end()));
