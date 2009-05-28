@@ -130,8 +130,12 @@ namespace boost
 		BOOST_STATIC_ASSERT(DepthFallBack > 0);
 
 		// we check that we got a sorter
-		BOOST_STATIC_ASSERT(boost::is_convertible<Sorter::sorter_category, boost::sorter_tag>::type);
+		BOOST_STATIC_ASSERT(boost::is_convertible<typename Sorter::sorter_category, boost::sorter_tag>::type);
+		
+		// we validate the iterator agains the sorter engines used
+		BOOST_STATIC_ASSERT(boost::is_converible<std::iterator_traits<iterator>::iterator_category, typename Sorter::sorter_category>::type);
 
+		
 		typedef typename Sorter::small_sorter_type small_sorter_type;
 		typedef typename Sorter::splitter_type splitter_type;
 		typedef typename Sorter::pivot_transiter_type pivot_transiter_type;

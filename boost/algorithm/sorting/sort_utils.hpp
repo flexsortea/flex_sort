@@ -10,7 +10,7 @@ namespace boost
 {
 
 	// returns true, if and only if the list is empty or ordered
-	// predicate is a binary operator that returns true when the first parameter is lower than the second parameter
+	// predicate is a binary operator that returns true when the first parameter is ordered relatively to the second parameter
 	template <typename Iterator, typename Predicate>
 	bool is_ordered(Iterator first, Iterator last, Predicate pred)
 	{

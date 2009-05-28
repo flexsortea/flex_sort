@@ -14,12 +14,12 @@ namespace boost
 	};
 
 	// this means that a bidirectional iterator is required (or more appropriate)
-	struct bidirectional_iterator_tag : virtual sorter_tag, std::bidirectional_iterator_tag
+	struct bidirectional_iterator_sorter_tag : virtual sorter_tag, std::bidirectional_iterator_tag
 	{
 	};
 
 	// this means that a forward iterator is required (or more appropriate)
-	struct forward_iterator_tag : virtual sorter_tag , std::forward_iterator_tag
+	struct forward_iterator_sorter_tag : virtual sorter_tag , std::forward_iterator_tag
 	{
 	};
 
