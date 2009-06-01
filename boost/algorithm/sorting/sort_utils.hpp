@@ -14,27 +14,17 @@ namespace boost
 	template <typename Iterator, typename Predicate>
 	bool is_ordered(Iterator first, Iterator last, Predicate pred)
 	{
+		if (first == last)
+			return true; // an empty list is ordered
 
-		Iterator current = first;
-		Iterator next;
-
-		while(current != last)
+		// we need to do the above test, because our loop assumes that
+		// there is at least one element
+		for(Iterator current = first, next; 
+			++(next = current) != last;
+			current = next)
 		{
-			next = current;
-			++next;
-
-			BOOST_ASSERT(current != next);
-
-			// next didn't become the last element and the current is !predicate the next
-			// means the list is unordered
-			if ((next != last) && !pred(*current, *next))
+			if (!pred(*current, *next))
 				return false;
-
-			// we can be here, if and only if the predicate holds true
-			// or we have reached the end
-			BOOST_ASSERT(((next != last) && pred(*current, *next)) || (next == last));
-
-			current = next;
 		}
 
 		return true;
