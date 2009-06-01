@@ -19,11 +19,9 @@ namespace boost
 
 		// we need to do the above test, because our loop assumes that
 		// there is at least one element
-		for(Iterator current = first, next; 
-			++(next = current) != last;
-			current = next)
+		for(Iterator current = first, next; ++(next = current) != last;	current = next)
 		{
-			if (!pred(*current, *next))
+			if (pred(*next, *current))
 				return false;
 		}
 
@@ -35,7 +33,7 @@ namespace boost
 	template <typename Iterator>
 	bool is_ordered(Iterator first, Iterator last)
 	{
-		return is_ordered(first, last, std::less_equal<std::iterator_traits<Iterator>::value_type>());
+		return is_ordered(first, last, std::less<std::iterator_traits<Iterator>::value_type>());
 	}
 
 }
