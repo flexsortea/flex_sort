@@ -4,7 +4,10 @@
 
 using boost::unit_test::test_suite;
 
-#include "sort_utils_test.hpp"
+#include "sort_utils_tests.hpp"
+#include "insert_sort_tests.hpp"
+#include "quick_sort_tests.hpp"
+
 
 test_suite* init_unit_test_suite( int argc, char* argv[] ) 
 {
@@ -12,6 +15,8 @@ test_suite* init_unit_test_suite( int argc, char* argv[] )
 
 
 	test->add( BOOST_TEST_CASE( &sort_utils_tests ));
+	test->add( BOOST_TEST_CASE( &insert_sort_tests ));
+	test->add( BOOST_TEST_CASE( &quick_sort_tests ));
 
 	return test;
 }

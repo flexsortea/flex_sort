@@ -4,10 +4,15 @@
 #include <functional>
 #include <iterator>
 
-#include <boost/assert.hpp>
-
 namespace boost
 {
+
+	// by default, we sort with " < "
+	template <typename T>
+	struct default_order : std::less<T>	{ };
+
+	template <typename Iterator>
+	struct default_iterator_order : default_order<typename std::iterator_traits<Iterator>::value_type> { };
 
 	// returns true, if and only if the list is empty or ordered
 	// predicate is a binary operator that returns true when the first parameter is ordered relatively to the second parameter
@@ -33,7 +38,7 @@ namespace boost
 	template <typename Iterator>
 	bool is_ordered(Iterator first, Iterator last)
 	{
-		return is_ordered(first, last, std::less<std::iterator_traits<Iterator>::value_type>());
+		return is_ordered(first, last, default_iterator_order<Iterator>());
 	}
 
 }

@@ -1,5 +1,5 @@
 
-#include "sort_utils_test.hpp"
+#include "sort_utils_tests.hpp"
 
 #include <algorithm>
 #include <vector>

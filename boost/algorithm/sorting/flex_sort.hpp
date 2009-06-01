@@ -7,7 +7,7 @@
 #include <boost/static_assert.hpp>
 #include <boost/type_traits/is_convertible.hpp>
 
-#include "detail/flex_sort_internals.hpp"
+#include <boost/algorithm/sorting/flex_sort_tags.hpp>
 
 namespace boost
 {
@@ -37,14 +37,14 @@ namespace boost
 
 	public:
 		// abstract sorter, doesn't directly process iterators
-		// therfore only inherits from sorter_category
+		// therefore only inherits from sorter_category
 		typedef boost::sorter_tag sorter_category;
 
 	private:
 		template <typename DistanceType, typename Iterator>
 		void update_distance_hint(DistanceType & distance_hint, Iterator first, Iterator last)
 		{
-			// this helps us avoiding computing the distance everytime
+			// this helps us avoiding computing the distance every time
 			if (distance_hint == -1)
 			{
 				distance_hint = std::distance(first, last);
@@ -60,7 +60,7 @@ namespace boost
 			Iterator last, 
 			Predicate pred, 
 			Functor f, 
-			std::iterator_traits<Iterator>::distance_type distance_hint = -1)
+			typename std::iterator_traits<Iterator>::distance_type distance_hint = -1)
 		{
 			Iterator result = last;
 
@@ -80,16 +80,16 @@ namespace boost
 
 	public:
 		template <typename Iterator, typename Predicate>
-		void fallback_sort(Iterator first, Iterator last, Predicate pred, std::iterator_traits<Iterator>::distance_type distance_hint = -1)
+		void fallback_sort(Iterator first, Iterator last, Predicate pred, typename std::iterator_traits<Iterator>::distance_type distance_hint = -1)
 		{
 			small_check_functor(first, last, pred, _fallback_sort, distance_hint);
 		}
 
 	public:
 		// makes two collections out of one according the splitter template
-		// if the size is below the smallthreshol, smallsorter will process the list
+		// if the size is below the smallthreshold, smallsorter will process the list
 		template <typename Iterator, typename Predicate>
-		Iterator split(Iterator first, Iterator last, Predicate pred, std::iterator_traits<Iterator>::distance_type & distance_hint = -1)
+		Iterator split(Iterator first, Iterator last, Predicate pred, typename std::iterator_traits<Iterator>::distance_type & distance_hint = -1)
 		{
 			return small_check_functor(first, last, pred, _splitter, distance_hint);
 		}
@@ -101,7 +101,7 @@ namespace boost
 		}
 
 		template <typename Iterator, typename Predicate>
-		void post_process(Iterator first, Iterator last, Predicate pred, std::iterator_traits<Iterator>::distance_type distance_hint = -1)
+		void post_process(Iterator first, Iterator last, Predicate pred, typename std::iterator_traits<Iterator>::distance_type distance_hint = -1)
 		{
 			update_distance_hint(distance_hint, first, last);
 			_post_process(first, last, pred);
@@ -123,17 +123,17 @@ namespace boost
 		typename Iterator, 
 		typename Predicate 
 	>
-	void flex_sort(Iterator first, Iterator last, Predicate pred, int depth = 0, std::iterator_traits<Iterator>::distance_type distance_hint = -1)
+	void flex_sort(Iterator first, Iterator last, Predicate pred, int depth = 0, typename std::iterator_traits<Iterator>::distance_type distance_hint = -1)
 	{
 
 		// it doesn't make sens to fallback for a depth of 0 (i.e. immediately)
-		BOOST_STATIC_ASSERT(DepthFallBack > 0);
+		BOOST_STATIC_ASSERT((DepthFallBack > 0));
 
 		// we check that we got a sorter
-		BOOST_STATIC_ASSERT(boost::is_convertible<typename Sorter::sorter_category, boost::sorter_tag>::type);
+		BOOST_STATIC_ASSERT((boost::is_convertible<typename Sorter::sorter_category, boost::sorter_tag>::type));
 		
 		// we validate the iterator agains the sorter engines used
-		BOOST_STATIC_ASSERT(boost::is_converible<std::iterator_traits<iterator>::iterator_category, typename Sorter::sorter_category>::type);
+		BOOST_STATIC_ASSERT((boost::is_convertible<std::iterator_traits<iterator>::iterator_category, typename Sorter::sorter_category>::type));
 
 		
 		typedef typename Sorter::small_sorter_type small_sorter_type;
