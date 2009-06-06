@@ -8,6 +8,9 @@ namespace boost
 
 	struct sorter_tag {};
 
+	// this means the sorter is recursive
+	struct recursive_sorter_tag : virtual sorter_tag {};
+
 	// this means that a random iterator is required (or more appropriate)
 	struct random_iterator_sorter_tag : virtual sorter_tag, std::random_access_iterator_tag
 	{

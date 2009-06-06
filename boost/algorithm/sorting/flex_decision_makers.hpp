@@ -23,7 +23,7 @@ namespace boost
 		// note that the depth type is hardcoded to unsigned int
 		// whereas the DistanceType depends on the collection and the platform
 		template <typename DistanceType>
-		bool operator()(DistanceType distance, unsigned int) const
+		bool operator()(DistanceType distance) const
 		{
 			// if this static assertion failed, somehow the distance is not an integer
 			BOOST_STATIC_ASSERT((boost::is_convertible<DistanceType, boost::uint64_t>::type));
@@ -48,7 +48,7 @@ namespace boost
 		// note that the depth type is hardcoded to unsigned int
 		// whereas the DistanceType depends on the collection and the platform
 		template <typename DistanceType>
-		bool operator()(DistanceType, unsigned int depth) const
+		bool operator()(unsigned int depth) const
 		{
 			return depth >= DepthThreshold;
 		}

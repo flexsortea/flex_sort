@@ -13,6 +13,14 @@ namespace boost
 namespace detail
 {
 
+	struct default_prelude
+	{
+		bool operator()(Iterator first, Iterator last, Predicate pred, DecisionMaker decision, )
+		{
+
+		}
+	};
+
 	template <typename DistanceType, typename Iterator>
 	static DistanceType update_distance_hint(DistanceType distance_hint, Iterator first, Iterator last)
 	{

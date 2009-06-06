@@ -8,11 +8,12 @@ namespace boost
 {
 
 
-	template <typename Iterator, typename Predicate = std::less<std::iterator_traits<Iterator>::value_type> >
+	
 	struct insert_sort
 	{
 
-		void operator()(Iterator first, Iterator last, Predicate pred = Predicate())
+		template <typename Iterator, typename Predicate>
+		void operator()(Iterator first, Iterator last, Predicate pred)
 		{
 			// don't want to work on an empty list
 			if (first == last)
