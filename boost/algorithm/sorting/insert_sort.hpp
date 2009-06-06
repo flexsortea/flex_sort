@@ -60,12 +60,6 @@ namespace boost
 		}
 		
 	};
-
-	//template <typename Iterator>
-	//bool insert_sort(Iterator first, Iterator last)
-	//{
-	//	return insert_sort(first, last, std::less<std::iterator_traits<Iterator>::value_type>());
-	//}
 	
 
 }

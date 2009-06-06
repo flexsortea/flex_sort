@@ -280,11 +280,23 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath="..\boost\algorithm\sorting\flex_decision_makers.hpp"
+			>
+		</File>
+		<File
 			RelativePath="..\boost\algorithm\sorting\flex_sort.hpp"
 			>
 		</File>
 		<File
 			RelativePath="..\boost\algorithm\sorting\flex_sort_tags.hpp"
+			>
+		</File>
+		<File
+			RelativePath="..\boost\algorithm\sorting\flex_sorters.hpp"
+			>
+		</File>
+		<File
+			RelativePath="..\boost\algorithm\sorting\heap_sort.hpp"
 			>
 		</File>
 		<File
