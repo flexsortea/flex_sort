@@ -5,6 +5,7 @@
 #include <iterator>
 
 #include <boost/swap.hpp>
+#include <boost/assert.hpp>
 
 #include <boost/algorithm/sorting/flex_sort_tags.hpp>
 #include <boost/algorithm/sorting/detail/flex_sort_internals.hpp>
