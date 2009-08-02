@@ -308,6 +308,14 @@
 			>
 		</File>
 		<File
+			RelativePath="..\boost\algorithm\sorting\partitionner.hpp"
+			>
+		</File>
+		<File
+			RelativePath="..\boost\algorithm\sorting\pivot_selector.hpp"
+			>
+		</File>
+		<File
 			RelativePath="..\boost\algorithm\sorting\quick_sort.hpp"
 			>
 		</File>

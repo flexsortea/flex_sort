@@ -16,8 +16,14 @@ namespace boost
 		// heap sort is not recursive
 		typedef sorter_tag sorter_type;
 
+		template <typename Iterator>
+		void operator()(Iterator first, Iterator last)
+		{
+
+		}
+
 		template <typename Iterator, typename Predicate>
-		void operator()(Iterator first, Iterator last, Predicate pred, typename std::iterator_traits<Iterator>::distance_type distance_hint = -1, unsigned int depth = 0)
+		void operator()(Iterator first, Iterator last, Predicate pred)
 		{
 			std::make_heap(first, last, pred);
 			std::sort_heap(first, last, pred);

@@ -7,7 +7,7 @@
 // in this test case, we work only on empty, and identical elements up to two
 // this catches the obvious bugs
 
-template <template <typename, typename> class SortAlgorithm>
+template <typename SortAlgorithm>
 struct trivial_test_case
 {
 
@@ -17,11 +17,10 @@ struct trivial_test_case
 		typedef typename Collection::iterator iterator_type;
 		typedef typename Collection::value_type value_type;
 
-		typedef SortAlgorithm<iterator_type, boost::default_iterator_order<iterator_type> > sorter_type;
+		typedef SortAlgorithm sorter_type;
 
 		sorter_type sort_to_test;
 
-		
 
 		Collection c;
 
@@ -43,7 +42,7 @@ struct trivial_test_case
 
 };
 
-template <template <typename, typename> class SortAlgorithm>
+template <typename SortAlgorithm>
 struct sort_whatever_case
 {
 
@@ -53,7 +52,7 @@ struct sort_whatever_case
 		typedef typename Collection::iterator iterator_type;
 		typedef typename Collection::value_type value_type;
 
-		typedef SortAlgorithm<iterator_type, boost::default_iterator_order<iterator_type> > sorter_type;
+		typedef SortAlgorithm sorter_type;
 
 		sorter_type sort_to_test;
 

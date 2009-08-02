@@ -8,19 +8,12 @@
 #include "sort_test_cases.hpp"
 #include "test_vectors.hpp"
 
-//struct insert_sort_wrapper
-//{
-//	template <typename Iterator>
-//	void operator()(Iterator first, Iterator last)
-//	{
-//		boost::insert_sort(first, last);
-//	}
-//};
 
 void insert_sort_tests(void)
 {
+	std::vector<int> empty;
 
-	trivial_test_case<boost::insert_sort>()(std::vector<int>());
+	trivial_test_case<boost::insert_sort>()(empty);
 
 	std::vector<int> yeah;
 

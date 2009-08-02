@@ -102,11 +102,14 @@ struct basic_tests
 	}
 
 	template <typename Int>
-	void operator()(Int p)
+	void operator()(Int)
 	{
-		do_it(vector<Int>());
-		do_it(list<Int>());
-		do_it(deque<Int>());
+		vector<Int> ev;
+		do_it(ev);
+		list<Int> lv;
+		do_it(lv);
+		deque<Int> ed;
+		do_it(ed);
 	}
 
 };
