@@ -20,12 +20,10 @@ namespace boost
 	struct pivot_last
 	{
 		template <typename Iterator, typename Predicate>
-		Iterator operator()(Iterator first, Iterator last, Predicate)
+		Iterator operator()(Iterator, Iterator last, Predicate)
 		{
-			if (first == last)
-				return first;
-
-			return --last;
+			--last;
+			return last;
 		}
 	};
 

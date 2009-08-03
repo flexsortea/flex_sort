@@ -328,6 +328,22 @@
 	</References>
 	<Files>
 		<File
+			RelativePath="..\boost\libs\test\default_sorts_tests.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\boost\libs\test\default_sorts_tests.hpp"
+			>
+		</File>
+		<File
+			RelativePath="..\boost\libs\test\heap_sort_tests.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\boost\libs\test\heap_sort_tests.hpp"
+			>
+		</File>
+		<File
 			RelativePath="..\boost\libs\test\insert_sort_tests.cpp"
 			>
 		</File>

@@ -7,14 +7,15 @@
 #include <boost/swap.hpp>
 #include <boost/assert.hpp>
 
-#include <boost/algorithm/sorting/flex_sort_tags.hpp>
-#include <boost/algorithm/sorting/detail/flex_sort_internals.hpp>
+#include <boost/algorithm/sorting/flex_tags.hpp>
+#include <boost/algorithm/sorting/detail/internals.hpp>
 
 namespace boost
 {
 
 	namespace detail
 	{
+
 		template<typename PivotSelector, typename Partitionner>
 		struct quick_sort_core
 		{
@@ -23,9 +24,9 @@ namespace boost
 			struct sorter_type : recursive_sorter_tag, random_iterator_sorter_tag {};
 
 			template <typename Iterator, typename Predicate>
-			void operator()(Iterator first, Iterator last, Predicate pred)
+			void operator()(Iterator first, Iterator last, Predicate pred, int depth = 0)
 			{
-
+				// we need to be able to stop the recursion by ourselves at some point
 				if (first == last)
 					return;
 
@@ -53,14 +54,14 @@ namespace boost
 				boost::swap(*pivot, *first);
 
 				// here goes the recursion
-				(*this)(first, pivot, pred);
-				(*this)(++pivot, last, pred);
-
+				(*this)(first, pivot, pred, ++depth);
+				(*this)(++pivot, last, pred, depth);
 			}
 
 		private:
 			PivotSelector _select_pivot;
 			Partitionner _partition;
+			
 		};
 	}
 

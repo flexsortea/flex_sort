@@ -275,10 +275,34 @@
 			Name="detail"
 			>
 			<File
-				RelativePath="..\boost\algorithm\sorting\detail\flex_sort_internals.hpp"
+				RelativePath="..\boost\algorithm\sorting\detail\filter_basics.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\boost\algorithm\sorting\detail\filter_cutoff.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\boost\algorithm\sorting\detail\filter_ground.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\boost\algorithm\sorting\detail\internals.hpp"
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\boost\algorithm\sorting\filter.hpp"
+			>
+		</File>
+		<File
+			RelativePath="..\boost\algorithm\sorting\filter_cutoff.hpp"
+			>
+		</File>
+		<File
+			RelativePath="..\boost\algorithm\sorting\filter_ground.hpp"
+			>
+		</File>
 		<File
 			RelativePath="..\boost\algorithm\sorting\flex_decision_makers.hpp"
 			>
@@ -288,11 +312,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\boost\algorithm\sorting\flex_sort_tags.hpp"
-			>
-		</File>
-		<File
-			RelativePath="..\boost\algorithm\sorting\flex_sorters.hpp"
+			RelativePath="..\boost\algorithm\sorting\flex_tags.hpp"
 			>
 		</File>
 		<File
@@ -320,7 +340,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\boost\algorithm\sorting\sort_utils.hpp"
+			RelativePath="..\boost\algorithm\sorting\utils.hpp"
 			>
 		</File>
 	</Files>

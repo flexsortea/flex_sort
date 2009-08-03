@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include <boost/algorithm/sorting/sort_utils.hpp>
+#include <boost/algorithm/sorting/utils.hpp>
 #include <boost/test/test_tools.hpp>
 
 // in this test case, we work only on empty, and identical elements up to two

@@ -7,9 +7,7 @@
 namespace boost
 {
 
-	template 
-	<
-	>
+
 
 	template 
 	<

@@ -4,14 +4,15 @@
 #include <functional>
 #include <iterator>
 
-#include <boost/algorithm/sorting/flex_sort_tags.hpp>
-#include <boost/algorithm/sorting/detail/flex_sort_internals.hpp>
+#include <boost/algorithm/sorting/flex_tags.hpp>
+#include <boost/algorithm/sorting/detail/internals.hpp>
 
 namespace boost
 {
 	
 	namespace detail
 	{
+
 		struct insert_sort_core 
 		{
 
@@ -19,7 +20,7 @@ namespace boost
 			struct sorter_type : bidirectional_iterator_sorter_tag {};
 
 			template <typename Iterator, typename Predicate>
-			void operator()(Iterator first, Iterator last, Predicate pred)
+			void operator()(Iterator first, Iterator last, Predicate pred, int)
 			{
 				// don't want to work on an empty list
 				if (first == last)
