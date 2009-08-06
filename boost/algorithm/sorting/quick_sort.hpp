@@ -27,11 +27,14 @@ namespace boost
 			void operator()(Iterator first, Iterator last, Predicate pred, int depth = 0)
 			{
 				// we need to be able to stop the recursion by ourselves at some point
-				if (first == last)
+				typedef typename std::iterator_traits<Iterator>::difference_type distance_type;
+
+				distance_type size = std::distance(first, last);
+				if (size < 2)
 					return;
 
 				typedef Iterator iterator_type;
-				typedef typename std::iterator_traits<Iterator>::difference_type distance_type;
+				
 				typedef typename std::iterator_traits<Iterator>::value_type value_type;	
 
 				// we choose a suitable pivot
@@ -49,11 +52,12 @@ namespace boost
 
 				pivot = _partition(par_start, last, std::bind2nd(pred, *first));
 
-				// pivot restauration
+				// pivot restoration
 				--pivot;
 				boost::swap(*pivot, *first);
 
 				// here goes the recursion
+				// TODO: make sure we go back to the top
 				(*this)(first, pivot, pred, ++depth);
 				(*this)(++pivot, last, pred, depth);
 			}

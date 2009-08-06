@@ -22,6 +22,8 @@ void default_sorts_tests(void)
 
 	trivial_test_case<boost::flex_sort>()(empty);
 
+	large_test_case<boost::flex_sort, 100>()(empty);
+
 	std::vector<int> yeah;
 
 	// this is some 

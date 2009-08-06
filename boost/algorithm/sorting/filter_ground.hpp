@@ -11,7 +11,7 @@ namespace boost
 {
 
 	template <int MaxDepth, typename Sorter, typename NextFilter>
-	struct sort_filter_ground : sort_filter<detail::sort_filter_ground<MaxDepth>, Sorter, NextFilter> {};
+	struct sort_filter_ground : sort_block_filter<detail::sort_filter_ground<MaxDepth>, Sorter, NextFilter> {};
 
 
 }

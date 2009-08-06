@@ -7,7 +7,7 @@
 #include <list>
 #include <map>
 
-#include <boost/algorithm/sorting/sort_utils.hpp>
+#include <boost/algorithm/sorting/utils.hpp>
 #include <boost/test/unit_test.hpp>
 
 #include <boost/cstdint.hpp>

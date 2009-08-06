@@ -11,7 +11,7 @@ namespace boost
 {
 
 	template <int Cutoff, typename Sorter, typename NextFilter>
-	struct sort_filter_cutoff : sort_filter<detail::sort_filter_cutoff<Cutoff>, Sorter, NextFilter> {};
+	struct sort_filter_cutoff : sort_block_filter<detail::sort_filter_cutoff<Cutoff>, Sorter, NextFilter> {};
 
 
 }

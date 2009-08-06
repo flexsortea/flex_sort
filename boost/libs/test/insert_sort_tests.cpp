@@ -15,6 +15,8 @@ void insert_sort_tests(void)
 
 	trivial_test_case<boost::insert_sort>()(empty);
 
+	large_test_case<boost::insert_sort, 1000>()(empty);
+
 	std::vector<int> yeah;
 
 	// this is some 

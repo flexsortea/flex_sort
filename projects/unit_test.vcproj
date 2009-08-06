@@ -356,6 +356,14 @@
 			>
 		</File>
 		<File
+			RelativePath="..\boost\libs\test\merge_sort_tests.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\boost\libs\test\merge_sort_tests.hpp"
+			>
+		</File>
+		<File
 			RelativePath="..\boost\libs\test\quick_sort_tests.cpp"
 			>
 		</File>

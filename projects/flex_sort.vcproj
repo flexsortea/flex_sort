@@ -328,6 +328,10 @@
 			>
 		</File>
 		<File
+			RelativePath="..\boost\algorithm\sorting\mergers.hpp"
+			>
+		</File>
+		<File
 			RelativePath="..\boost\algorithm\sorting\partitionner.hpp"
 			>
 		</File>

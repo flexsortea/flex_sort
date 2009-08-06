@@ -26,6 +26,9 @@ struct test_with_pivot
 
 		trivial_test_case<boost::quick_sort<PivotSelector, boost::default_partitionner> >()(empty);
 
+		// nothing big because in some cases we get quadratic behaviour
+		large_test_case<boost::quick_sort<PivotSelector, boost::default_partitionner>, 100>()(empty);
+
 		vector<int> yeah;
 
 		// this is some 

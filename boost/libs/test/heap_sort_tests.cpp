@@ -22,6 +22,8 @@ void heap_sort_tests(void)
 
 	trivial_test_case<boost::heap_sort>()(empty);
 
+	large_test_case<boost::heap_sort, 10000>()(empty);
+
 	std::vector<int> yeah;
 
 	// this is some 
