@@ -7,6 +7,10 @@ namespace boost
 namespace detail
 {
 
+
+	
+
+
 	// always returns true will call the next in stack
 	struct sort_filter_pass
 	{

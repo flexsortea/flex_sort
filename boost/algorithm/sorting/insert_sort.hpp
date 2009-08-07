@@ -16,11 +16,13 @@ namespace boost
 		struct insert_sort_core 
 		{
 
+			typedef insert_sort_core this_type;
+
 			// not recursive, requires a bidir iterator
 			struct sorter_type : bidirectional_iterator_sorter_tag {};
 
-			template <typename Iterator, typename Predicate>
-			void operator()(Iterator first, Iterator last, Predicate pred, int)
+			template <typename Iterator, typename Predicate, typename Root>
+			void operator()(Iterator first, Iterator last, Predicate pred, int, Root)
 			{
 				// don't want to work on an empty list
 				if (first == last)

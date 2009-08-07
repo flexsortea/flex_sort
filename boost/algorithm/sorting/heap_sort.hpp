@@ -20,8 +20,8 @@ namespace boost
 			// heap sort is not recursive
 			struct sorter_type : random_iterator_sorter_tag {};
 
-			template <typename Iterator, typename Predicate>
-			void operator()(Iterator first, Iterator last, Predicate pred, int)
+			template <typename Iterator, typename Predicate, typename Root>
+			void operator()(Iterator first, Iterator last, Predicate pred, int, Root)
 			{
 				std::make_heap(first, last, pred);
 				std::sort_heap(first, last, pred);

@@ -7,6 +7,8 @@
 #include <boost/swap.hpp>
 #include <boost/assert.hpp>
 
+
+
 #include <boost/algorithm/sorting/flex_tags.hpp>
 #include <boost/algorithm/sorting/detail/internals.hpp>
 
@@ -20,18 +22,20 @@ namespace boost
 		struct quick_sort_core
 		{
 
+			typedef quick_sort_core<PivotSelector, Partitionner> this_type;
+
+			// if we're the root, then we cast to ourselves
+			// being root means that Root is of type sort_root
+
 			// quicksort is a typical recursive sort
 			struct sorter_type : recursive_sorter_tag, random_iterator_sorter_tag {};
 
-			template <typename Iterator, typename Predicate>
-			void operator()(Iterator first, Iterator last, Predicate pred, int depth = 0)
+			template <typename Iterator, typename Predicate, typename Root>
+			void operator()(Iterator first, Iterator last, Predicate pred, int depth, Root)
 			{
+
 				// we need to be able to stop the recursion by ourselves at some point
 				typedef typename std::iterator_traits<Iterator>::difference_type distance_type;
-
-				distance_type size = std::distance(first, last);
-				if (size < 2)
-					return;
 
 				typedef Iterator iterator_type;
 				
@@ -56,10 +60,12 @@ namespace boost
 				--pivot;
 				boost::swap(*pivot, *first);
 
-				// here goes the recursion
-				// TODO: make sure we go back to the top
-				(*this)(first, pivot, pred, ++depth);
-				(*this)(++pivot, last, pred, depth);
+				typedef sort_get_root<Root, this_type>::root_type root_type;
+
+				// here goes the recursion, do not pass root_rype as parameter,
+				// otherwisey ou will "reroot" the search tree
+				(*reinterpret_cast<root_type *>(this))(first, pivot, pred, ++depth, Root());
+				(*reinterpret_cast<root_type *>(this))(++pivot, last, pred, depth, Root());
 			}
 
 		private:
@@ -71,7 +77,7 @@ namespace boost
 
 
 	template<typename PivotSelector, typename Partitionner>
-	struct quick_sort : detail::default_predicate<detail::quick_sort_core<PivotSelector, Partitionner>, std::less>
+	struct quick_sort :	detail::default_predicate<detail::quick_sort_core<PivotSelector, Partitionner>, std::less>
 	{
 
 	};
