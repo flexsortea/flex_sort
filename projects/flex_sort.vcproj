@@ -287,7 +287,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\boost\algorithm\sorting\detail\heap_sort_core.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\boost\algorithm\sorting\detail\insert_sort_core.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\boost\algorithm\sorting\detail\internals.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\boost\algorithm\sorting\detail\merge_sort_core.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\boost\algorithm\sorting\detail\quick_sort_core.hpp"
 				>
 			</File>
 		</Filter>
@@ -301,6 +317,10 @@
 		</File>
 		<File
 			RelativePath="..\boost\algorithm\sorting\filter_ground.hpp"
+			>
+		</File>
+		<File
+			RelativePath="..\boost\algorithm\sorting\filter_stack.hpp"
 			>
 		</File>
 		<File
@@ -341,6 +361,10 @@
 		</File>
 		<File
 			RelativePath="..\boost\algorithm\sorting\quick_sort.hpp"
+			>
+		</File>
+		<File
+			RelativePath="..\boost\algorithm\sorting\trivial_sort.hpp"
 			>
 		</File>
 		<File

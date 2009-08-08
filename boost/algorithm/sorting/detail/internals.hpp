@@ -3,28 +3,14 @@
 
 #include <iterator>
 
-#include <boost/mpl/eval_if.hpp>
-#include <boost/mpl/identity.hpp>
-
-#include <boost/type_traits/is_same.hpp>
+#include <boost/algorithm/sorting/filter_stack.hpp>
 
 namespace boost
 {
 namespace detail
 {
 
-	struct sort_root {};
 
-	template <typename Root, typename ThisType>
-	struct sort_get_root
-	{
-		typedef typename boost::mpl::eval_if
-		<
-			boost::is_same<Root, sort_root>, 
-			boost::mpl::identity<ThisType>,  
-			boost::mpl::identity<Root> 
-		>::type root_type;
-	};
 
 	// implements a predicateless operator() if one with a predicate is available
 	template <typename T, template <typename> class P>
@@ -36,7 +22,10 @@ namespace detail
 		void operator()(Iterator first, Iterator last)
 		{
 			typedef typename std::iterator_traits<Iterator>::value_type value_type;
-			(*static_cast<T *>(this))(first, last, P<value_type>(), 0, boost::detail::sort_root());
+
+			// we don't want to pass this type as it would be useless to go back to here
+			// the underlying type is going to be a better candidate for the stack's top
+			(*static_cast<T *>(this))(first, last, P<value_type>(), 0, boost::sort_filter_root());
 		}
 	};
 

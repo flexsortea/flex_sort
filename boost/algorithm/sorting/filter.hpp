@@ -1,8 +1,9 @@
 
 #pragma once
 
-#include <boost/algorithm/sorting/detail/filter_basics.hpp>
+#include <boost/algorithm/sorting/filter_stack.hpp>
 
+#include <boost/algorithm/sorting/detail/filter_basics.hpp>
 #include <boost/algorithm/sorting/detail/internals.hpp>
 
 namespace boost
@@ -24,17 +25,16 @@ namespace boost
 
 			bool result = false;
 
-			// the filter must become the root if we don't already have one
-			typedef boost::detail::sort_get_root<Root, this_type>::root_type root_type;
+			boost::sort_filter_stack<Root, this_type> filter_stack;
 
 			if (_pred(first, last, pred, depth))
 			{
-				_true(first, last, pred, depth, root_type());
+				filter_stack.down(_true, first, last, pred, depth);
 				result = true;
 			}
 			else
 			{
-				_false(first, last, pred, depth, root_type());
+				filter_stack.down(_false, first, last, pred, depth);
 			}
 
 			return result;
@@ -62,16 +62,15 @@ namespace boost
 		{
 			bool result = false;
 
-			// the filter must become the root if we don't already have one
-			typedef sort_get_root<Root, this_type>::root_type root_type;
+			boost::sort_filter_stack<Root, this_type> filter_stack;
 
 			if (_pred(first, last, pred, depth))
 			{
-				_true(first, last, pred, depth, root_type());
+				filter_stack.down(_true, first, last, pred, depth);
 				result = true;
 			}
 
-			_next(first, last, pred, depth, root_type());
+			filter_stack.down(_next, first, last, pred, depth);
 
 			return result;
 
