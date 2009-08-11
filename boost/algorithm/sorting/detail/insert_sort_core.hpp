@@ -4,22 +4,21 @@
 #include <algorithm>
 
 #include <boost/algorithm/sorting/flex_tags.hpp>
+#include <boost/algorithm/sorting/detail/internals.hpp>
 
 namespace boost
 {
 namespace detail
 {
 
-	struct insert_sort_core 
+	struct insert_sort_core : boost::detail::implement_sorter_operator<insert_sort_core>
 	{
-
-		typedef insert_sort_core this_type;
 
 		// not recursive, requires a bidir iterator
 		struct sorter_type : bidirectional_iterator_sorter_tag {};
 
 		template <typename Iterator, typename Predicate, typename Root>
-		void operator()(Iterator first, Iterator last, Predicate pred, int, Root)
+		static void sort(Iterator first, Iterator last, Predicate pred, int, Root)
 		{
 			// don't want to work on an empty list
 			if (first == last)

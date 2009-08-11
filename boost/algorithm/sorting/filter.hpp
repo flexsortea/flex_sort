@@ -14,37 +14,34 @@ namespace boost
 	// FalseFilter will be applied when the predicate returns true
 	// the operator will return true if and only if TrueFilter is applied
 	template <typename FilterPredicate, typename TrueFilter, typename FalseFilter>
-	struct sort_block_filter
+	struct sort_block_filter : detail::implement_filter_operator<sort_block_filter<FilterPredicate, TrueFilter, FalseFilter> >
 	{
 
 		typedef sort_block_filter<FilterPredicate, TrueFilter, FalseFilter> this_type;
 
 		template <typename Iterator, typename Predicate, typename Root>
-		bool operator()(Iterator first, Iterator last, Predicate pred, int depth, Root)
+		static bool sort(Iterator first, Iterator last, Predicate pred, int depth, Root)
 		{
-
 			bool result = false;
 
-			boost::sort_filter_stack<Root, this_type> filter_stack;
+			FilterPredicate filter;
 
-			if (_pred(first, last, pred, depth))
+			if (filter(first, last, pred, depth))
 			{
-				filter_stack.down(_true, first, last, pred, depth);
+				boost::sort_filter_stack<Root, this_type, TrueFilter> filter_stack;
+				filter_stack.down(first, last, pred, depth);
 				result = true;
 			}
 			else
 			{
-				filter_stack.down(_false, first, last, pred, depth);
+				boost::sort_filter_stack<Root, this_type, FalseFilter> filter_stack;
+				filter_stack.down(first, last, pred, depth);
 			}
 
 			return result;
 
 		}
 
-	private:
-		FilterPredicate _pred;
-		TrueFilter _true;
-		FalseFilter _false;
 	};
 
 	// a filter that will optionally apply TrueFilter and always pass on to NextFilter
@@ -52,34 +49,45 @@ namespace boost
 	// NextFilter is always applied
 	// the operator will return true if and only if TrueFilter is applied
 	template <typename FilterPredicate, typename TrueFilter, typename NextFilter>
-	struct sort_pass_filter
+	struct sort_pass_filter : detail::implement_filter_operator<sort_pass_filter<FilterPredicate, TrueFilter, NextFilter> >
 	{
 
 		typedef sort_pass_filter<FilterPredicate, TrueFilter, NextFilter> this_type;
 
 		template <typename Iterator, typename Predicate, typename Root>
-		bool operator()(Iterator first, Iterator last, Predicate pred, int depth, Root)
+		static bool sort(Iterator first, Iterator last, Predicate pred, int depth, Root)
 		{
 			bool result = false;
 
 			boost::sort_filter_stack<Root, this_type> filter_stack;
 
-			if (_pred(first, last, pred, depth))
+			FilterPredicate filter;
+
+			if (filter(first, last, pred, depth))
 			{
-				filter_stack.down(_true, first, last, pred, depth);
+				boost::sort_filter_stack<Root, this_type, TrueFilter> filter_stack;
+				filter_stack.down(first, last, pred, depth);
 				result = true;
 			}
 
-			filter_stack.down(_next, first, last, pred, depth);
+			boost::sort_filter_stack<Root, this_type, NextFilter> filter_stack;
+
+			filter_stack.down(first, last, pred, depth);
 
 			return result;
 
 		}
 
-	private:
-		FilterPredicate _pred;
-		TrueFilter _true;
-		NextFilter _next;
+	};
+
+	// use this when you need a stack just to go up and not to go down
+	struct sort_void_filter
+	{
+		template <typename Iterator, typename Predicate, typename Root>
+		static bool sort(Iterator first, Iterator last, Predicate pred, int depth, Root)
+		{
+			return false;
+		}
 	};
 
 
